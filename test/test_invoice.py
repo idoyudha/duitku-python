@@ -1,17 +1,21 @@
 import unittest
 import requests
+import os
 
 import duitku
 
 from http import HTTPStatus
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class TestInvoice(unittest.TestCase):
     duitku = duitku.Duitku()
 
     client = duitku.client
-    client.merchant_code = 'YOUR MERCHANT CODE'
-    client.api_key = 'YOUR API KEY'
+    client.merchant_code = os.getenv('MERCHANT_CODE')
+    client.api_key = os.getenv('API_KEY')
 
     def test_create_invoice_success(self):
         create_invoice_req = {
