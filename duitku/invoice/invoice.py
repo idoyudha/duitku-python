@@ -1,7 +1,6 @@
 import hmac
 import hashlib
 from ..client import DuitkuClient
-from .models import CreateInvoiceRequest, CreateInvoiceResponse
 
 class InvoiceService:
     def __init__(self, client: DuitkuClient):
@@ -10,8 +9,8 @@ class InvoiceService:
 
     def create(
         self, 
-        request: CreateInvoiceRequest,
-    ) -> CreateInvoiceResponse:
+        request: dict,
+    ) -> dict:
         path = "/merchant/createInvoice"
         headers = {
             "x-duitku-merchantcode": self.client.merchant_code,

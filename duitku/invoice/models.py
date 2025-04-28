@@ -42,5 +42,6 @@ class CreateInvoiceResponse:
     merchantCode: str
     reference: str
     paymentUrl: str
+    amount: str
     statusCode: str
     statusMessage: str
