@@ -14,10 +14,10 @@ class InvoiceService:
     ) -> CreateInvoiceResponse:
         path = "/merchant/createInvoice"
         headers = {
-            "mechantCode": self.client.merchant_code,
-            "timestamp": self.client.get_current_timestamp(),
+            "x-duitku-merchantcode": self.client.merchant_code,
+            "x-duitku-timestamp": self.client.get_current_timestamp(),
         }
-        headers["signature"] = self._generate_invoice_signature(headers["timestamp"])
+        headers["x-duitku-signature"] = self._generate_invoice_signature(headers["x-duitku-timestamp"])
         url = self.base_url + path
 
         response = self.client.send_api_request(
