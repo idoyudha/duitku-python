@@ -24,3 +24,6 @@ jobs:
       run: pip install python-dotenv
     - name: Run the test
       run: python -m unittest discover -s test
+      env:
+        MERCHANT_CODE: ${{ secrets.MERCHANT_CODE }}
+        API_KEY: ${{ secrets.API_KEY }}
