@@ -18,8 +18,12 @@ jobs:
         python-version: '3.x'
     - name: Upgrade pip and tools
       run: python -m pip install --upgrade pip setuptools wheel
-    - name: Install package and dependencies
-      run: pip install .[test]
+    - name: Install runtime dependencies
+      run: pip install requests
+    - name: Install test dependencies
+      run: pip install python-dotenv
+    - name: Install the package
+      run: pip install .
     - name: Run the test
       run: python -m unittest discover -s test
       env:
