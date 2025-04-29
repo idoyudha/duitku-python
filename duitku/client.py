@@ -1,5 +1,4 @@
 import json
-import time
 import requests
 from typing import Optional, Dict, Any
 
@@ -8,6 +7,8 @@ class DuitkuClient():
     ProductionV2BaseURL = 'https://passport.duitku.com/webapi/api'
     SandboxPOPBaseURL = 'https://api-sandbox.duitku.com/api'
     ProductionPOPBaseURL = 'https://api-prod.duitku.com/api'
+    SandboxEnv = 'sandbox'
+    ProductionEnv = "production"
     def __init__(
         self, 
         merchant_code=None,

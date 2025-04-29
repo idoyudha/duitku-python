@@ -1,0 +1,19 @@
+[project]
+name = "duitku-python"
+version = "0.1.0"
+authors = [
+    {name = "Ido Yudhatama", email = "idowidya.yudhatama@gmail.com"},
+]
+description = "Duitku Python SDK"
+readme = "README.md"
+requires-python = ">=3.5"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE*"]
+
+[project.urls]
+Homepage = "https://github.com/idoyudha/duitku-python"
+Issues = "https://github.com/idoyudha/duitku-python/issues"
