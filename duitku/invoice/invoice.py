@@ -1,5 +1,6 @@
 import hmac
 import hashlib
+import time
 from ..client import DuitkuClient
 
 class InvoiceService:
@@ -14,7 +15,7 @@ class InvoiceService:
         path = "/merchant/createInvoice"
         headers = {
             "x-duitku-merchantcode": self.client.merchant_code,
-            "x-duitku-timestamp": self.client.get_current_timestamp(),
+            "x-duitku-timestamp": str(int((round(time.time() * 1000)))),
         }
         headers["x-duitku-signature"] = self._generate_invoice_signature(headers["x-duitku-timestamp"])
         url = self.base_url + path

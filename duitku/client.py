@@ -35,10 +35,11 @@ class DuitkuClient():
         method: str,
         url: str,
         req_body: Optional[Dict[str, Any]],
-        header_params: Dict[str, str]
+        header_params: Dict[str, str] = None
     ) -> requests.Response:
         headers = {"Content-Type": "application/json"}
-        headers.update(header_params)
+        if header_params is not None:
+            headers.update(header_params)
 
         if req_body is not None:
             data = json.dumps(req_body)
@@ -51,9 +52,8 @@ class DuitkuClient():
             headers=headers,
             data=data,
         )
+        # print(data)
+        # print(response.text)
         response.raise_for_status()
         return response
-    
-    def get_current_timestamp(self) -> str:
-        return str(int((round(time.time() * 1000))))
         
