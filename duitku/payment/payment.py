@@ -1,6 +1,6 @@
 import hashlib
 
-from ..client import DuitkuClient
+from ..client import DuitkuClient, DuitkuResult
 
 class PaymentService:
     def __init__(self, client: DuitkuClient):
@@ -10,7 +10,7 @@ class PaymentService:
     def get_methods(
         self,
         request: dict,
-    ) -> dict:
+    ) -> DuitkuResult:
         path = "/merchant/paymentmethod/getpaymentmethod"
         request['merchantCode'] = self.client.merchant_code
         request['signature'] = self._generate_payment_signature(str(request['amount']) + request['datetime'])

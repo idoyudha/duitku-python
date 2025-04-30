@@ -2,45 +2,45 @@ from dataclasses import dataclass
 from typing import List, Optional
 
 @dataclass
-class ItemDetails():
+class ItemDetails:
     name: str
     quantity: int
     price: int
 
 @dataclass
-class CustomerDetail():
+class CustomerDetail:
     firstName: Optional[str] = None
     lastName: Optional[str] = None
     email: Optional[str] = None
     phoneNumber: Optional[str] = None
 
 @dataclass
-class OvoPaymentDetails():
+class OvoPaymentDetails:
     paymentType: str
     amount: int
 
 @dataclass
-class Ovo():
+class Ovo:
     paymentDetails: List[OvoPaymentDetails]
 
 @dataclass
-class Shopee():
+class Shopee:
     promo_ids: str
     useCoin: str
 
 @dataclass
-class AccountLink():
+class AccountLink:
     credentialCode: str
     ovo: Ovo
     shopee: Shopee
 
 @dataclass
-class CreditCardDetail():
+class CreditCardDetail:
     acquirer: str
     binWhitelist: List[str]
 
 @dataclass
-class CreateTransactionRequest():
+class CreateTransactionRequest:
     merchantCode: str
     paymentAmount: int
     merchantOrderId: str
@@ -61,7 +61,7 @@ class CreateTransactionRequest():
     expiryPeriod: Optional[int] = None
 
 @dataclass
-class CreateTransactionResponse():
+class CreateTransactionResponse:
     merchantCode: str
     reference: str
     paymentUrl: str
