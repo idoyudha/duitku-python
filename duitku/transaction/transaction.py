@@ -43,5 +43,4 @@ class TransactionService:
     
     def _generate_transaction_signature(self, parameter: str) -> str:
         combined_str = self.client.merchant_code + parameter + self.client.api_key
-        hash_bytes = hashlib.md5(combined_str.encode()).digest()
-        return hash_bytes.hex()
+        return hashlib.md5(combined_str.encode()).digest().hex()

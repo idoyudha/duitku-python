@@ -3,7 +3,7 @@ from .invoice import InvoiceService
 from .payment import PaymentService
 from .transaction import TransactionService
 
-class Duitku():
+class Duitku:
     def __init__(self):
         self.client = DuitkuClient()
         self.invoice = InvoiceService(self.client)
