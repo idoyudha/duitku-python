@@ -1,4 +1,6 @@
 # Duitku Python API Client Library
+[![pypi](https://img.shields.io/pypi/v/duitku-python)](https://pypi.org/project/duitku-python/)
+[![Build Status](https://github.com/idoyudha/duitku-python/actions/workflows/python.yml/badge.svg?branch=master)](https://github.com/idoyudha/duitku-python/actions/workflows/python.yml?query=branch%3Amaster)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 Duitku API Library for Python
