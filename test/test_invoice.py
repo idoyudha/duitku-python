@@ -1,5 +1,4 @@
 import unittest
-import requests
 import os
 
 import duitku
@@ -26,28 +25,21 @@ class TestInvoice(unittest.TestCase):
             "callbackUrl": "https://duitku.com/callback",
             "returnUrl": "https://duitku.com"
         }
-        response = None
-        try:
-            response = self.duitku.invoice.create(create_invoice_req)
-        except requests.exceptions.HTTPError as e:
-            self.assertIsNone(e)
 
-        self.assertEqual(response['merchantCode'], self.client.merchant_code)
-        self.assertIsInstance(response['reference'], str)
-        self.assertIsNotNone(response['paymentUrl'])
-        self.assertIsNotNone(response['amount'])
-        self.assertEqual(response['statusCode'], '00')
-        self.assertEqual(response['statusMessage'], 'SUCCESS')
+        result = self.duitku.invoice.create(create_invoice_req)
+        self.assertEqual(result.status_code, HTTPStatus.OK)
+        self.assertEqual(result.message['merchantCode'], self.client.merchant_code)
+        self.assertIsInstance(result.message['reference'], str)
+        self.assertIsNotNone(result.message['paymentUrl'])
+        self.assertIsNotNone(result.message['amount'])
+        self.assertEqual(result.message['statusCode'], '00')
+        self.assertEqual(result.message['statusMessage'], 'SUCCESS')
 
     def test_create_invoice_bad_request(self):
         create_invoice_req = {}
-        response = None
-        try:
-            response = self.duitku.invoice.create(create_invoice_req)
-        except requests.exceptions.HTTPError as e:
-            self.assertEqual(e.response.status_code, HTTPStatus.BAD_REQUEST)
-            self.assertEqual(e.response.reason, 'Bad Request')
-        self.assertIsNone(response)
+        result = self.duitku.invoice.create(create_invoice_req)
+        self.assertEqual(result.status_code, HTTPStatus.BAD_REQUEST)
+        self.assertIsNotNone(result.message)
 
 if __name__ == '__main__':
     unittest.main()

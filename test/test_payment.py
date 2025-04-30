@@ -1,9 +1,9 @@
 import unittest
-import requests
 import os
 
 import duitku
 
+from http import HTTPStatus
 from dotenv import load_dotenv
 from datetime import datetime
 
@@ -21,18 +21,17 @@ class TestPayment(unittest.TestCase):
             "amount": 10001,
             "datetime": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         }
-        response = None
-        try:
-            response = self.duitku.payment.get_methods(request_get_payment_methods)
-        except requests.exceptions.HTTPError as e:
-            self.assertIsNone(e)
-        self.assertIsInstance(response['paymentFee'], list)
-        self.assertIsInstance(response['paymentFee'][0]['paymentMethod'], str)
-        self.assertIsInstance(response['paymentFee'][0]['paymentName'], str)
-        self.assertIsInstance(response['paymentFee'][0]['paymentImage'], str)
-        self.assertIsInstance(response['paymentFee'][0]['totalFee'], str)
-        self.assertEqual(response['responseCode'], '00')
-        self.assertEqual(response['responseMessage'], 'SUCCESS')
+
+        result = self.duitku.payment.get_methods(request_get_payment_methods)
+        self.assertEqual(result.status_code, HTTPStatus.OK)
+
+        self.assertIsInstance(result.message['paymentFee'], list)
+        self.assertIsInstance(result.message['paymentFee'][0]['paymentMethod'], str)
+        self.assertIsInstance(result.message['paymentFee'][0]['paymentName'], str)
+        self.assertIsInstance(result.message['paymentFee'][0]['paymentImage'], str)
+        self.assertIsInstance(result.message['paymentFee'][0]['totalFee'], str)
+        self.assertEqual(result.message['responseCode'], '00')
+        self.assertEqual(result.message['responseMessage'], 'SUCCESS')
 
 if __name__ == '__main__':
     unittest.main()

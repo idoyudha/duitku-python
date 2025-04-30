@@ -20,7 +20,7 @@ class PaymentService:
             url=url,
             req_body=request,
         )
-        return response.json()
+        return response
 
     def _generate_payment_signature(self, paramter: str) -> str:
         combined_str = self.client.merchant_code + paramter + self.client.api_key

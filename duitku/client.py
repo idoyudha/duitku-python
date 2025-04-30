@@ -1,8 +1,24 @@
 import json
 import requests
+
+from http import HTTPStatus
 from typing import Optional, Dict, Any
 
-class DuitkuClient():
+
+class DuitkuResult:
+    def __init__(
+        self,
+        status_code=HTTPStatus.OK,
+        message=None,
+        raw_request="",
+        raw_response=""
+    ):
+        self.status_code = status_code
+        self.message = message
+        self.raw_request = raw_request
+        self.raw_response = raw_response
+
+class DuitkuClient:
     SandboxV2BaseURL = 'https://sandbox.duitku.com/webapi/api'
     ProductionV2BaseURL = 'https://passport.duitku.com/webapi/api'
     SandboxPOPBaseURL = 'https://api-sandbox.duitku.com/api'
@@ -37,7 +53,7 @@ class DuitkuClient():
         url: str,
         req_body: Optional[Dict[str, Any]],
         header_params: Dict[str, str] = None
-    ) -> requests.Response:
+    ) -> DuitkuResult:
         headers = {"Content-Type": "application/json"}
         if header_params is not None:
             headers.update(header_params)
@@ -53,8 +69,18 @@ class DuitkuClient():
             headers=headers,
             data=data,
         )
-        # print(data)
-        # print(response.text)
-        response.raise_for_status()
-        return response
+        return self._handle_response(response)
+    
+    def _handle_response(self, response: requests.Response) -> DuitkuResult:
+        result = DuitkuResult(
+            status_code=response.status_code,
+            raw_request=response.request.__dict__,
+            raw_response=response.raw._original_response.__dict__,
+        )
+        try:
+            if response.text:
+                result.message = response.json()
+        except json.decoder.JSONDecodeError:
+            result.message = response.text
+        return result
         

@@ -1,7 +1,7 @@
 import hmac
 import hashlib
 import time
-from ..client import DuitkuClient
+from ..client import DuitkuClient, DuitkuResult
 
 class InvoiceService:
     def __init__(self, client: DuitkuClient):
@@ -11,7 +11,7 @@ class InvoiceService:
     def create(
         self, 
         request: dict,
-    ) -> dict:
+    ) -> DuitkuResult:
         path = "/merchant/createInvoice"
         headers = {
             "x-duitku-merchantcode": self.client.merchant_code,
@@ -20,13 +20,13 @@ class InvoiceService:
         headers["x-duitku-signature"] = self._generate_invoice_signature(headers["x-duitku-timestamp"])
         url = self.base_url + path
 
-        response = self.client.send_api_request(
+        result = self.client.send_api_request(
             method="POST",
             url=url,
             req_body=request,
             header_params=headers
         )
-        return response.json()
+        return result
     
     def _generate_invoice_signature(self, timestamp: str) -> str:
         str_signature = self.client.merchant_code + timestamp
