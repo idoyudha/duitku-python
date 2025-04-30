@@ -20,7 +20,7 @@ Duitku API Library for Python
 Get this library, add to your project
 
 ```bash
-pip install duitku
+pip install duitku-python
 ```
 
 ## Example Usage
