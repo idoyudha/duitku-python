@@ -7,8 +7,10 @@ Duitku API Library for Python
 ## Supported Feature
 |        Feature         |              Function                |                HTTP Request                   |              Description              |
 |------------------------|--------------------------------------|-----------------------------------------------|---------------------------------------|
-| Get Payment Method     | client.payment.get_methods           | POST /merchant/paymentmethod/getpaymentmethod | Get list of available payment methods |
-| Craete New Invoice     | client.invoice.create                | POST /merchant/createInvoice                  | Create Transaction via POP API        |
+| Get Payment Method     | duitku.payment.get_methods           | POST /merchant/paymentmethod/getpaymentmethod | Get list of available payment methods |
+| Craete New Invoice     | duitku.invoice.create                | POST /merchant/createInvoice                  | Create Transaction via POP API        |
+| Create New Transaction | duitku.transaction.create            | POST /merchant/v2/inquiry                     | Create Transaction via V2 API         |
+| Get Transaction        | duitku.transaction.get_status        | POST /merchant/transactionStatus              | Get Transaction via V2 API            |
 
 ## Requirements
 - Python 3.5 or later
