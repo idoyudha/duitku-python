@@ -24,5 +24,4 @@ class PaymentService:
 
     def _generate_payment_signature(self, paramter: str) -> str:
         combined_str = self.client.merchant_code + paramter + self.client.api_key
-        hash_bytes = hashlib.sha256(combined_str.encode()).digest()
-        return hash_bytes.hex()
+        return hashlib.sha256(combined_str.encode()).digest().hex()
