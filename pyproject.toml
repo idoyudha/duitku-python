@@ -1,6 +1,6 @@
 [project]
 name = "duitku-python"
-version = "0.2.1"
+version = "0.2.2"
 authors = [
     {name = "Ido Yudhatama", email = "idowidya.yudhatama@gmail.com"},
 ]
