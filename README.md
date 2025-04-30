@@ -50,12 +50,8 @@ create_invoice_req = {
     "callbackUrl": "https://duitku.com/callback",
     "returnUrl": "https://duitku.com"
 }
-response = None
-try:
-    response = duitku.invoice.create(create_invoice_req):
-except requests.exceptions.HTTPError as e:
-    print(e)
-print(response)
+result = self.duitku.invoice.create(create_invoice_req)
+print(result)
 ```
 
 ## Support
