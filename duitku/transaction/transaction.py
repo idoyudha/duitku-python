@@ -11,6 +11,12 @@ class TransactionService:
         self,
         request: dict
     ) -> DuitkuResult:
+        """
+        Create a new transaction.
+
+        :param request: A dictionary containing the request parameters.
+        :return: A DuitkuResult object containing the response parameters.
+        """
         path = "/merchant/v2/inquiry"
         request['merchantCode'] = self.client.merchant_code
         request['signature'] = self._generate_transaction_signature(request.get('merchantOrderId', '') +  str(request.get('paymentAmount')))
@@ -28,6 +34,12 @@ class TransactionService:
         self,
         request: dict
     ) -> DuitkuResult:
+        """
+        Get the status of a transaction.
+
+        :param request: A dictionary containing the request parameters.
+        :return: A DuitkuResult object containing the response parameters.
+        """
         path = "/merchant/transactionStatus"
         request['merchantCode'] = self.client.merchant_code
         request['signature'] = self._generate_transaction_signature(request['merchantOrderId'])
@@ -42,5 +54,11 @@ class TransactionService:
         return result
     
     def _generate_transaction_signature(self, parameter: str) -> str:
+        """
+        Generates a transaction signature using the given parameter, merchant code, and API key.
+
+        :param parameter: A string containing the request parameters.
+        :return: A string representing the generated signature in hexadecimal format.
+        """
         combined_str = self.client.merchant_code + parameter + self.client.api_key
         return hashlib.md5(combined_str.encode()).digest().hex()
