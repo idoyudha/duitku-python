@@ -16,14 +16,14 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name="Duitku",
-    version="0.2.8",
+    version="0.2.9",
     description="Duitku Python SDK",
     long_description=long_description,
     url="https://github.com/idoyudha/duitku-python",
     author="Ido Yudhatama",
     author_email="idowidya.yudhatama@gmail.com",
     keywords=["duitku", "duitku api", "duitku python"],
-    packages=find_packages(include=["Duitku"], exclude=["tests", "tests.*"]),
+    packages=find_packages(include=["Duitku*"]),
     python_requires='>=3.5',
     install_requires=[
         "requests>=2.25.0",
