@@ -15,8 +15,8 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
-    name="duitku",
-    version="0.2.5",
+    name="Duitku",
+    version="0.2.6",
     description="Duitku Python SDK",
     long_description=long_description,
     url="https://github.com/idoyudha/duitku-python",

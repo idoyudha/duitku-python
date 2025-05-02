@@ -30,12 +30,12 @@ pip install duitku-python
 ## Example Usage
 ```python
 import requests
-import duitku
+import Duitku
 
 from http import HTTPStatus
 from datetime import datetime
 
-duitku = duitku.Duitku()
+duitku = Duitku.Duitku()
 
 client = duitku.client
 client.merchant_code = "YOUR MERCHANT CODE"
