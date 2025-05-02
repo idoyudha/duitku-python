@@ -1,7 +1,7 @@
 import unittest
 import os
 
-import Duitku
+import duitku_temp
 
 from http import HTTPStatus
 from dotenv import load_dotenv
@@ -10,7 +10,7 @@ from datetime import datetime
 load_dotenv()
 
 class TestTransaction(unittest.TestCase):
-    duitku = Duitku.Duitku()
+    duitku = duitku_temp.Duitku()
 
     client = duitku.client
     client.merchant_code = os.getenv('MERCHANT_CODE')
