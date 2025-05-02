@@ -23,7 +23,7 @@ setup(
     author="Ido Yudhatama",
     author_email="idowidya.yudhatama@gmail.com",
     keywords=["duitku", "duitku api", "duitku python"],
-    packages=find_packages(include=["duitku*"], exclude=["tests", "tests.*"]),
+    packages=find_packages(include=["Duitku"], exclude=["tests", "tests.*"]),
     python_requires='>=3.5',
     install_requires=[
         "requests>=2.25.0",
