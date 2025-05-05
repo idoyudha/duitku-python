@@ -16,7 +16,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name="Duitku",
-    version="0.2.9",
+    version="0.2.10",
     description="Duitku Python SDK",
     long_description=long_description,
     url="https://github.com/idoyudha/duitku-python",
